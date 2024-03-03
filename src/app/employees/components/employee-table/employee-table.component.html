@@ -1,4 +1,4 @@
-<div class="card">
+<div class="h-full">
   <p-table
     #dt1
     [value]="employees"
@@ -16,7 +16,8 @@
 
     <!-- MAIN FILTER -->
     <ng-template pTemplate="caption">
-      <div class="flex">
+      <div class="flex gap-4 items-center">
+        <h2 class="text-xl">TABLA DE EMPLEADOS</h2>
         <span class="p-input-icon-left ml-auto">
           <i class="pi pi-search"></i>
           <input pInputText type="text" (input)="dt1.filterGlobal(inputFilterValue, 'contains')" [(ngModel)]="inputFilterValue" placeholder="Busqueda general" />
@@ -28,20 +29,19 @@
     <!-- HEADER -->
     <ng-template pTemplate="header">
       <tr>
-        <th style="width:10%">Id</th>
-        <th style="width:10%">Nombre</th>
-        <th style="width:10%">Cargo</th>
-        <th style="width:10%">Edad</th>
-        <th style="width:10%">Cambiar Estatus</th>
+        <th style="width:18%">Id</th>
+        <th style="width:18%">Nombre</th>
+        <th style="width:18%">Cargo</th>
+        <th style="width:18%">Edad</th>
+        <th style="width:18%">Cambiar Estatus</th>
         <th style="width:10%">Más Acciones</th>
-        <th style="width:10%"></th>
       </tr>
       <tr>
         <th>
-          <p-columnFilter type="text" field="id"></p-columnFilter>
+          <p-columnFilter type="text" field="id" placeholder="Id"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="name"></p-columnFilter>
+          <p-columnFilter type="text" field="name" placeholder="Nombre"></p-columnFilter>
         </th>
         <th>
           <p-columnFilter field="charge" matchMode="equals" [showMenu]="false">
@@ -55,7 +55,7 @@
           </p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="age"></p-columnFilter>
+          <p-columnFilter type="text" field="age" placeholder="Edad"></p-columnFilter>
         </th>
         <th>
           <p-columnFilter field="status" matchMode="equals" [showMenu]="false">

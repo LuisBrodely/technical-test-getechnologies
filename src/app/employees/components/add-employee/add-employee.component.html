@@ -1,10 +1,12 @@
-<h2>Agregar Usuario</h2>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form">
-  <input type="text" pInputText formControlName="name" placeholder="Ingresa tu nombre"/>
-  <p-calendar formControlName="date" [showIcon]="true" dateFormat="dd.mm.yy" [maxDate]="maxDate" placeholder="Fecha de nacimiento"></p-calendar>
-  <input type="number" pInputText formControlName="age" placeholder="Ingresa tu edad"/>
-  <p-dropdown formControlName="charge" [options]="charges" optionLabel="descripcion" placeholder="Selecciona un cargo"></p-dropdown>
-  <p-selectButton [options]="status" formControlName="status" optionLabel="label" optionValue="value"></p-selectButton>
+<div class="w-96 p-6 bg-white rounded-md m-6">
+  <h2 class="font-semibold text-2xl mb-4">Agregar Usuario</h2>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form" class="flex flex-col gap-4">
+    <input type="text" pInputText formControlName="name" placeholder="Ingresa tu nombre"/>
+    <p-calendar formControlName="date" [showIcon]="true" dateFormat="dd.mm.yy" [maxDate]="maxDate" placeholder="Fecha de nacimiento"></p-calendar>
+    <input type="number" pInputText formControlName="age" placeholder="Ingresa tu edad"/>
+    <p-dropdown formControlName="charge" [options]="charges" optionLabel="descripcion" placeholder="Selecciona un cargo"></p-dropdown>
+    <p-selectButton [options]="status" formControlName="status" optionLabel="label" optionValue="value"></p-selectButton>
 
-  <p-button label="Agregar" type="submit"></p-button>
-</form>
+    <p-button label="Agregar" type="submit"></p-button>
+  </form>
+</div>
