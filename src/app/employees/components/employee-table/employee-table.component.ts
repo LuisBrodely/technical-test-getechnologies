@@ -46,10 +46,10 @@ export class EmployeeTableComponent {
 
   onRowEditSave(employee: Employee) {
     const age = Number(employee.age);
-    if (!isNaN(age) && age > 18) {
+    if (!isNaN(age) && age >= 18) {
       employee.age = age;
       this.employeesService.updateEmployee(employee);
-      this.messageService.add({ severity: 'success', summary: 'Editar Usuario', detail: `Datos del empleado ${ employee.name } guardados.` });
+      this.messageService.add({ severity: 'success', summary: 'Editar Empleado', detail: `Empleado ${ employee.name } editado.` });
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La edad debe ser un número válido.' });
       return
@@ -59,7 +59,7 @@ export class EmployeeTableComponent {
   onRowEditCancel(employee: Employee, index: number) {
       this.employees[index] = this.clonedEmployees[employee.id as string];
       delete this.clonedEmployees[employee.id as string];
-      this.messageService.add({ severity: 'info', summary: 'Editar Usuario', detail: `Has cancelado la edición.` });
+      this.messageService.add({ severity: 'info', summary: 'Editar Empleado', detail: `Has cancelado la edición.` });
   }
 
   changeEmployeeStatus(employee: Employee): void {
@@ -78,12 +78,12 @@ export class EmployeeTableComponent {
       rejectButtonStyleClass:"p-button-danger p-button-text",
       acceptIcon:"none",
       rejectIcon:"none",
-      acceptLabel: 'Si',
-      rejectLabel: 'No',
+      acceptLabel: 'Aceptar',
+      rejectLabel: 'Cancelar',
 
       accept: () => {
         this.employeesService.deleteEmployee(employee.id)
-        this.messageService.add({ severity: 'success', summary: 'Eliminar Empleado', detail: `Usuario ${ employee.name } eliminado.` });
+        this.messageService.add({ severity: 'success', summary: 'Eliminar Empleado', detail: `Empleado ${ employee.name } eliminado.` });
         this.clear(this.dt1)
       },
       reject: () => {
