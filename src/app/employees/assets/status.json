@@ -1,10 +1,10 @@
 [
   {
-    "value": "activo",
+    "value": "Activo",
     "label": "Activo"
   },
   {
-    "value": "inactivo",
+    "value": "Inactivo",
     "label": "Inactivo"
   }
 ]

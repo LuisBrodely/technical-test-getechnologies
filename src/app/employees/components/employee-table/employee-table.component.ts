@@ -53,6 +53,12 @@ export class EmployeeTableComponent {
       delete this.clonedEmployees[employee.id as string];
   }
 
+  changeEmployeeStatus(employee: Employee): void {
+    const newStatus = employee.status === StatusValue.Active ? StatusValue.Inactive : StatusValue.Active;
+    this.employeesService.changeEmployeeStatus(employee.id, newStatus);
+    this.messageService.add({ severity: 'success', summary: 'Cambiar Estatus', detail: 'Se ha cambiado el estatus del usuario.' });
+  }
+
   deleteEmployee(event: Event, employee: Employee) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,

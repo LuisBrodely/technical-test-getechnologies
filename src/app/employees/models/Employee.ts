@@ -20,8 +20,8 @@ export interface Status {
 }
 
 export enum StatusValue {
-  Active = 'activo',
-  Inactive = 'inactivo'
+  Active = 'Activo',
+  Inactive = 'Inactivo'
 }
 
 export enum ChargeValue {

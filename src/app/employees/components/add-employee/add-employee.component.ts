@@ -4,6 +4,8 @@ import { Charge, Employee, Status, StatusValue } from '../../models/Employee';
 import { EmployeesService } from '../../services/employees.service';
 import charges from '../../assets/charges.json'
 import status from '../../assets/status.json'
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-employee',
@@ -24,7 +26,12 @@ export class AddEmployeeComponent implements OnInit {
     status: [StatusValue.Active, [Validators.required]],
   });;
 
-  constructor (private fb: FormBuilder, private employeesService: EmployeesService) { }
+  constructor (
+    private fb: FormBuilder,
+    private employeesService: EmployeesService,
+    private messageService: MessageService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.myForm.get('date')?.valueChanges.subscribe(date => {
@@ -47,10 +54,12 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit() {
     if (this.myForm.invalid) {
-      alert('Ingresa los campos requeridos')
-      return
+      this.messageService.add({ severity: 'warn', summary: 'Completar Campos', detail: 'Completa todos los campos antes de continuar.' });
+      return;
     }
-    this.employeesService.addEmployee(this.myForm.value as Employee)
-    this.myForm.reset({ status: StatusValue.Active })
+    const employee: Employee = { ...this.myForm.value, charge: this.myForm.value.charge.descripcion };
+    this.employeesService.addEmployee(employee);
+    this.myForm.reset({ status: StatusValue.Active });
+    this.router.navigate(['/employee-table']);
   }
 }

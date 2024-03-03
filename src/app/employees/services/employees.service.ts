@@ -70,6 +70,14 @@ export class EmployeesService {
     console.log('Actualizar =>', this.employees)
   }
 
+  changeEmployeeStatus(employeeId: string, newStatus: StatusValue): void {
+    const employee = this.employees.find(emp => emp.id === employeeId);
+    if (employee) {
+      employee.status = newStatus;
+    }
+    console.log('Cambiar estado =>', this.employees);
+  }
+
   deleteEmployee(employeeId: string): void {
     const index = this.employees.findIndex(employee => employee.id === employeeId);
     if (index !== -1) {
