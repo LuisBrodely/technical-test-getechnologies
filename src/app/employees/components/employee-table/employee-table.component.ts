@@ -1,10 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Table } from 'primeng/table';
-import { EmployeesService } from '../../services/employees.service';
-import { Charge, Employee, Status, StatusValue } from '../../models/Employee';
+
 import charges from '../../assets/charges.json'
 import status from '../../assets/status.json'
-import { ConfirmationService, Message, MessageService } from 'primeng/api';
+
+import { Table } from 'primeng/table';
+import { EmployeesService } from '../../services/employees.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Charge, Employee, Status, StatusValue } from '../../models/Employee';
 
 @Component({
   selector: 'app-employee-table',
@@ -44,31 +46,33 @@ export class EmployeeTableComponent {
 
   onRowEditSave(employee: Employee) {
     this.employeesService.updateEmployee(employee)
-    this.messageService.add({ severity: 'success', summary: 'Edidato con exito', detail: `Usuario ${ employee.name} editado.` });
-    this.employees = this.employeesService.getAllEmployees();
+    this.messageService.add({ severity: 'success', summary: 'Editar Usuario', detail: `Empleado ${ employee.name} editado.` });
   }
 
   onRowEditCancel(employee: Employee, index: number) {
       this.employees[index] = this.clonedEmployees[employee.id as string];
       delete this.clonedEmployees[employee.id as string];
+      this.messageService.add({ severity: 'info', summary: 'Editar Usuario', detail: `Has cancelado la edición.` });
   }
 
   changeEmployeeStatus(employee: Employee): void {
     const newStatus = employee.status === StatusValue.Active ? StatusValue.Inactive : StatusValue.Active;
     this.employeesService.changeEmployeeStatus(employee.id, newStatus);
-    this.messageService.add({ severity: 'success', summary: 'Cambiar Estatus', detail: 'Se ha cambiado el estatus del usuario.' });
+    this.messageService.add({ severity: 'success', summary: 'Cambiar Estatus', detail: `Se ha cambiado el estatus del empleado ${ employee.name }.` });
   }
 
   deleteEmployee(event: Event, employee: Employee) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: '¿Quieres eliminar a este empleado?',
+      message: '¿Estas seguro de eliminar a este empleado?',
       header: 'Borrar',
       icon: 'pi pi-info-circle',
-      acceptButtonStyleClass:"p-button-danger p-button-text",
-      rejectButtonStyleClass:"p-button-text p-button-text",
+      acceptButtonStyleClass:"p-button-text p-button-text",
+      rejectButtonStyleClass:"p-button-danger p-button-text",
       acceptIcon:"none",
       rejectIcon:"none",
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
 
       accept: () => {
         this.employeesService.deleteEmployee(employee.id)

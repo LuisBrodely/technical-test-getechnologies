@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  padding: 24px;
+  background-color: aqua;
+  flex-direction: column;
+  width: 300px;
+  gap: 10px
+}
+
+.form input,
+.form p-dropdown,
+.form p-selectButton,
+.form p-button {
+  width: 100%;
+}

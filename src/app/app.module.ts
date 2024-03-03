@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeesModule } from './employees/employees.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -15,9 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ToastModule,
+    MenubarModule,
     EmployeesModule,
   ],
   providers: [],

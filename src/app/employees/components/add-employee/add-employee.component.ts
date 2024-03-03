@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Charge, Employee, Status, StatusValue } from '../../models/Employee';
-import { EmployeesService } from '../../services/employees.service';
+import { Router } from '@angular/router';
+
 import charges from '../../assets/charges.json'
 import status from '../../assets/status.json'
-import { Router } from '@angular/router';
+
 import { MessageService } from 'primeng/api';
+import { EmployeesService } from '../../services/employees.service';
+import { Charge, Employee, Status, StatusValue } from '../../models/Employee';
 
 @Component({
   selector: 'app-add-employee',
@@ -16,7 +18,7 @@ export class AddEmployeeComponent implements OnInit {
   charges: Charge[] = charges
   status: Status[] = status
 
-  maxDate: Date = new Date()
+  maxDate: Date = new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
 
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -59,6 +61,7 @@ export class AddEmployeeComponent implements OnInit {
     }
     const employee: Employee = { ...this.myForm.value, charge: this.myForm.value.charge.descripcion };
     this.employeesService.addEmployee(employee);
+    this.messageService.add({ severity: 'success', summary: 'Agregar Empleado', detail: `Empleado ${ employee.name } agregado con exito.` });
     this.myForm.reset({ status: StatusValue.Active });
     this.router.navigate(['/employee-table']);
   }

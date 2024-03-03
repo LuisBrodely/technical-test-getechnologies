@@ -10,42 +10,34 @@ export class EmployeesService {
   public employees: Employee[] = [
     {
       id: uuidv4(),
-      name: 'John Doe',
+      name: 'Steve Jobs',
       birthdate: new Date(),
-      age: 20,
+      age: 56,
+      charge: ChargeValue.Subdirector,
+      status: StatusValue.Inactive
+    },
+    {
+      id: uuidv4(),
+      name: 'Mark Zuckerberg',
+      birthdate: new Date(),
+      age: 39,
       charge: ChargeValue.Coordinador,
       status: StatusValue.Active
     },
     {
       id: uuidv4(),
-      name: 'John Doe2',
+      name: 'Bill Gates',
       birthdate: new Date(),
-      age: 20,
-      charge: ChargeValue.Subdirector,
-      status: StatusValue.Active
-    },
-    {
-      id: uuidv4(),
-      name: 'John Doe2',
-      birthdate: new Date(),
-      age: 20,
-      charge: ChargeValue.Subdirector,
-      status: StatusValue.Active
-    },
-    {
-      id: uuidv4(),
-      name: 'John Doe2',
-      birthdate: new Date(),
-      age: 20,
-      charge: ChargeValue.Subdirector,
-      status: StatusValue.Active
-    },
-    {
-      id: uuidv4(),
-      name: 'John Doe',
-      birthdate: new Date(),
-      age: 20,
+      age: 68,
       charge: ChargeValue.Coordinador,
+      status: StatusValue.Inactive
+    },
+    {
+      id: uuidv4(),
+      name: 'Elonk Musk',
+      birthdate: new Date(),
+      age: 52,
+      charge: ChargeValue.Gerente,
       status: StatusValue.Active
     },
   ];

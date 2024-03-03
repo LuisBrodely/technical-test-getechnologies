@@ -41,7 +41,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     TableModule,
     TagModule,
     MultiSelectModule,
-    ToastModule,
     ConfirmDialogModule
   ],
   exports: [
