@@ -40,6 +40,22 @@ export class EmployeesService {
       charge: ChargeValue.Gerente,
       status: StatusValue.Active
     },
+    {
+      id: uuidv4(),
+      name: 'Tim Cook',
+      birthdate: new Date(),
+      age: 56,
+      charge: ChargeValue.Subdirector,
+      status: StatusValue.Inactive
+    },
+    {
+      id: uuidv4(),
+      name: 'Jeffrey Bezos',
+      birthdate: new Date(),
+      age: 52,
+      charge: ChargeValue.Gerente,
+      status: StatusValue.Inactive
+    }
   ];
 
   getAllEmployees(): Employee[] {

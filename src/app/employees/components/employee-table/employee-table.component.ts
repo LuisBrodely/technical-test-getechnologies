@@ -49,7 +49,7 @@ export class EmployeeTableComponent {
     if (!isNaN(age) && age > 18) {
       employee.age = age;
       this.employeesService.updateEmployee(employee);
-      this.messageService.add({ severity: 'success', summary: 'Editar Usuario', detail: `Empleado ${ employee.name} editado.` });
+      this.messageService.add({ severity: 'success', summary: 'Editar Usuario', detail: `Datos del empleado ${ employee.name } guardados.` });
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La edad debe ser un número válido.' });
       return
