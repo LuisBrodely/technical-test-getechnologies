@@ -42,8 +42,6 @@ export class EmployeesService {
     },
   ];
 
-  constructor() { }
-
   getAllEmployees(): Employee[] {
     return this.employees;
   }
@@ -67,7 +65,7 @@ export class EmployeesService {
     if (employee) {
       employee.status = newStatus;
     }
-    console.log('Cambiar estado =>', this.employees);
+    console.log('Cambiar estatus =>', this.employees);
   }
 
   deleteEmployee(employeeId: string): void {
