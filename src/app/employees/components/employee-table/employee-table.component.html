@@ -80,7 +80,7 @@
         <td>
           <p-cellEditor *ngIf="employee.status == 'Inactivo'">
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="employee.age" required>
+              <input pInputText type="number" [(ngModel)]="employee.age" min="18" required>
             </ng-template>
           </p-cellEditor>
           <ng-container *ngIf="employee.status === 'Activo' || !editing">

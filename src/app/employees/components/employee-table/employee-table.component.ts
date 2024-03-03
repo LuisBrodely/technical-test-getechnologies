@@ -45,8 +45,15 @@ export class EmployeeTableComponent {
   }
 
   onRowEditSave(employee: Employee) {
-    this.employeesService.updateEmployee(employee)
-    this.messageService.add({ severity: 'success', summary: 'Editar Usuario', detail: `Empleado ${ employee.name} editado.` });
+    const age = Number(employee.age);
+    if (!isNaN(age) && age > 18) {
+      employee.age = age;
+      this.employeesService.updateEmployee(employee);
+      this.messageService.add({ severity: 'success', summary: 'Editar Usuario', detail: `Empleado ${ employee.name} editado.` });
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La edad debe ser un número válido.' });
+      return
+    }
   }
 
   onRowEditCancel(employee: Employee, index: number) {

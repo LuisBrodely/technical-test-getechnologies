@@ -23,7 +23,7 @@ export class AddEmployeeComponent implements OnInit {
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     date: ['', [Validators.required]],
-    age: ['', [Validators.required],],
+    age: ['', [Validators.required, Validators.min(18)],],
     charge: ['', [Validators.required]],
     status: [StatusValue.Active, [Validators.required]],
   });;
@@ -56,7 +56,7 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit() {
     if (this.myForm.invalid) {
-      this.messageService.add({ severity: 'warn', summary: 'Completar Campos', detail: 'Completa todos los campos antes de continuar.' });
+      this.messageService.add({ severity: 'warn', summary: 'Completar Campos', detail: 'Verifica los datos para poder continuar.' });
       return;
     }
     const employee: Employee = { ...this.myForm.value, charge: this.myForm.value.charge.descripcion };
