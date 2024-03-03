@@ -56,7 +56,7 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit() {
     if (this.myForm.invalid) {
-      this.messageService.add({ severity: 'warn', summary: 'Completar Campos', detail: 'Verifica los datos para poder continuar.' });
+      this.messageService.add({ severity: 'warn', summary: 'Validar Campos', detail: 'Verifica los datos para poder continuar.' });
       return;
     }
     const employee: Employee = { ...this.myForm.value, charge: this.myForm.value.charge.descripcion };
