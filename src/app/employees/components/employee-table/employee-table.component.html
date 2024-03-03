@@ -1,0 +1,115 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+  <p-table
+    #dt1
+    [value]="employees"
+    dataKey="id"
+    editMode="row"
+    [tableStyle]="{'min-width': '50rem'}"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['id', 'name', 'charge', 'age', 'status']"
+    [tableStyle]="{ 'min-width': '75rem' }"
+  >
+
+    <!-- MAIN FILTER -->
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button pButton label="Limpiar filtro" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt1.filterGlobal(inputFilterValue, 'contains')" [(ngModel)]="inputFilterValue" placeholder="Buscar palabra" />
+        </span>
+      </div>
+    </ng-template>
+
+    <!-- HEADER -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:10%">Id</th>
+        <th style="width:10%">Nombre</th>
+        <th style="width:10%">Cargo</th>
+        <th style="width:10%">Edad</th>
+        <th style="width:10%">Estatus</th>
+        <th style="width:10%">Acciones</th>
+        <th style="width:10%"></th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter type="text" field="id"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="name"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter field="charge" matchMode="equals" [showMenu]="false">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-dropdown [ngModel]="value" [options]="charges" (onChange)="filter($event.value)" placeholder="Selecciona un cargo" [showClear]="true">
+                <ng-template let-option pTemplate="item">
+                  <p-tag [value]="option.descripcion"></p-tag>
+                </ng-template>
+              </p-dropdown>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="age"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-dropdown [ngModel]="value" [options]="status" (onChange)="filter($event.value)" placeholder="Selecciona un estatus" [showClear]="true">
+                <ng-template let-option pTemplate="item">
+                  <p-tag [value]="option.label" [severity]="getStatus(option.value)"></p-tag>
+                </ng-template>
+              </p-dropdown>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+
+    <!-- BODY -->
+    <ng-template pTemplate="body" let-employee let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="employee">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.charge }}</td>
+        <td>
+          <p-cellEditor >
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="employee.age" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ employee.age }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown [options]="status" appendTo="body" [(ngModel)]="employee.status" [style]="{'width':'100%'}"></p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <span style="text-transform: capitalize;">{{ employee.status }}</span>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-user-edit" (click)="onRowEditInit(employee)" class="p-button-rounded p-button-text"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(employee)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(employee, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+          </div>
+        </td>
+        <td>
+          <button pButton pRipple type="button" icon="pi pi-user-minus" (click)="deleteEmployee($event, employee)" class="p-button-rounded p-button-text p-button-danger"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

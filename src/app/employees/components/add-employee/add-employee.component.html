@@ -1,0 +1,9 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <input type="text" pInputText formControlName="name" placeholder="Ingresa tu nombre"/>
+  <p-calendar formControlName="date" [showIcon]="true" dateFormat="dd.mm.yy" [maxDate]="maxDate" placeholder="Fecha de nacimiento"></p-calendar>
+  <input type="number" pInputText formControlName="age" placeholder="Ingresa tu edad"/>
+  <p-dropdown formControlName="charge" [options]="charges" optionLabel="descripcion" placeholder="Selecciona un cargo"></p-dropdown>
+  <p-selectButton [options]="status" formControlName="status" optionLabel="label" optionValue="value"></p-selectButton>
+
+  <p-button label="Agregar" type="submit"></p-button>
+</form>

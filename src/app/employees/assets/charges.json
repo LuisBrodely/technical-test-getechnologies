@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "descripcion": "Gerente"
+  },
+  {
+    "id": 2,
+    "descripcion": "Coordinador"
+  },
+  {
+    "id": 3,
+    "descripcion": "Subdirector"
+  }
+]
